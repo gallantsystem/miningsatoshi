@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Pickaxe, ChevronRight, Zap, Coins, Users, Star, Menu, X, Gift, Users2, Target, Video, Ticket, Repeat, Smartphone, Apple, Globe, MessageCircle, Send, Youtube, Heart, Info } from 'lucide-react';
+import AdSense from './components/AdSense';
 
 // 다국어 텍스트 데이터
 const translations = {
@@ -560,6 +561,12 @@ export default function App() {
           </div>
         </section>
 
+        {/* 중간 광고 영역 */}
+        <AdSense 
+          client="ca-pub-6917612099433744" 
+          slot="YOUR_MIDDLE_AD_SLOT_ID" 
+        />
+
         {/* 포인트 획득 방법 */}
         <section id="earn-points" className="py-24 relative overflow-hidden">
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-64 bg-yellow-600/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -761,6 +768,12 @@ export default function App() {
              </div>
            </div>
         </section>
+
+        {/* 하단 광고 영역 */}
+        <AdSense 
+          client="ca-pub-6917612099433744" 
+          slot="YOUR_FOOTER_AD_SLOT_ID" 
+        />
 
       </main>
 

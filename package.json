@@ -1,6 +1,6 @@
 {
   "name": "react-example",
-  "homepage": "https://<your-username>.github.io/<your-repo-name>",
+  "homepage": "https://gallantsystem.github.io/miningsatoshi",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -19,7 +19,6 @@
     "@vitejs/plugin-react": "^5.0.4",
     "dotenv": "^17.2.3",
     "express": "^4.21.2",
-    "git": "^0.1.5",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
     "react": "^19.0.0",
