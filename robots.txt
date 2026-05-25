@@ -3,3 +3,6 @@ Allow: /
 
 User-agent: Mediapartners-Google
 Allow: /
+
+User-agent: Google-adstxt
+Disallow:
