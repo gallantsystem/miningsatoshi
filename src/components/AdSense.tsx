@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface AdSenseProps {
   client: string;
@@ -17,12 +17,21 @@ const AdSense: React.FC<AdSenseProps> = ({
   style = { display: 'block' },
   className = ""
 }) => {
+  const insRef = useRef<HTMLModElement>(null);
+
   useEffect(() => {
     try {
-      // @ts-ignore
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error('AdSense error:', e);
+      // Check if the ad is already rendered to avoid double push errors in React StrictMode
+      if (insRef.current && !insRef.current.hasAttribute('data-adsbygoogle-status')) {
+        // @ts-ignore
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }
+    } catch (e: any) {
+      // Suppress normal AdSense behaviors that throw errors as these do not break the app
+      const msg = e.message || '';
+      if (!msg.includes('already have ads') && !msg.includes('No slot size')) {
+        console.error('AdSense error:', e);
+      }
     }
   }, []);
 
@@ -34,6 +43,7 @@ const AdSense: React.FC<AdSenseProps> = ({
   return (
     <div className={`ad-container my-12 flex justify-center overflow-hidden ${className}`}>
       <ins
+        ref={insRef}
         className="adsbygoogle"
         style={style}
         data-ad-client={client}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Pickaxe, ChevronRight, Zap, Coins, Users, Star, Menu, X, Gift, Users2, Target, Video, Ticket, Repeat, Smartphone, Apple, Globe, MessageCircle, Send, Youtube, Heart, Info } from 'lucide-react';
+import { Pickaxe, ChevronRight, Zap, Coins, Users, Star, Menu, X, Gift, Users2, Target, Video, Ticket, Repeat, Smartphone, Apple, Globe, MessageCircle, Send, Youtube, Heart, Info, Copy, Check } from 'lucide-react';
 import AdSense from './components/AdSense';
 
 // 다국어 텍스트 데이터
@@ -20,7 +20,10 @@ const translations = {
       socialProof: "이미 <b>106,364명</b>이 채굴 중입니다",
       miningSpeed: "채굴 속도",
       myBalance: "내 밸런스",
-      appStoreWait: "앱스토어 & 구글플레이 출시 예정"
+      appStoreWait: "앱스토어 & 구글플레이 출시 예정",
+      inviteCode: "추천(레퍼럴) 코드:",
+      copy: "복사",
+      copied: "복사 완료!"
     },
     partners: {
       title: "함께하는 생태계",
@@ -48,16 +51,41 @@ const translations = {
       title: "다양한 방법으로 Points를 모으세요",
       desc: "단순한 채굴을 넘어 게임과 이벤트를 통해 더 많은 포인트를 획득할 수 있습니다.",
       methods: [
-        { title: "기본 채굴", desc: "채굴 파워와 가속도에 따라 지속적인 Points 자동 채굴" },
-        { title: "친구 초대", desc: "추천인 등록 시 즉시 5,000 Points 특별 지급" },
-        { title: "타이밍 게임", desc: "정확도에 따라 1~1,000 Points 차등 지급" },
-        { title: "100% 당첨 쿠폰", desc: "꽝 없는 쿠폰! 결과에 따라 1~1,000 Points 랜덤 획득" },
-        { title: "광고 시청", desc: "짧은 영상 시청하고 추가 보상 포인트 획득" },
-        { title: "럭키 이벤트", desc: "사토시 캐릭터 포획 시 랜덤 보너스 포인트 지급" }
+        { 
+          title: "기본 채굴", 
+          desc: "채굴 파워와 가속도에 따라 지속적인 Points 자동 채굴",
+          details: "채굴파워와 광고보기를 통해 채굴 속도를 향상시켜보세요. 24시간 쉬지 않고, Point를 채굴합니다. 최고 10배 가속도를 활성화 시켜 최대의 더 많은 포인트를 모으세요."
+        },
+        { 
+          title: "친구 초대", 
+          desc: "추천인 등록 시 즉시 5,000 Points 특별 지급",
+          details: "3단계 리퍼럴 시스템으로 친구를 초대하여 같이 채굴하세요. 친구의 또 다른 친구를 데려와서 함께 채굴하면 서로의 채굴파워가 함께 상승합니다.\n\n커뮤니티가 커질수록 우리의 가치는 더 커집니다."
+        },
+        { 
+          title: "타이밍 게임", 
+          desc: "정확도에 따라 1~1,000 Points 차등 지급",
+          details: "집중~! 집중! 타이밍에 잘 맞춰 정해진 시간에 멈춰보세요.\n\n1000P를 한방에! 잭팟이 기다리고 있습니다."
+        },
+        { 
+          title: "100% 당첨 쿠폰", 
+          desc: "꽝 없는 쿠폰! 결과에 따라 1~1,000 Points 랜덤 획득",
+          details: "쿠폰 메뉴로 들어가시면 1~1000P의 꽝없는 쿠폰이 있습니다. 게임을 하고, 제휴 채널을 방문하면 쿠폰이 적립됩니다.\n\n쿠폰을 긁으면 당신에게 포인트가 적립된다.\n\n기부를 하세요~ 사토시 기부액 만큼 쿠폰이 쌓입니다."
+        },
+        { 
+          title: "광고 시청", 
+          desc: "짧은 영상 시청하고 추가 보상 포인트 획득",
+          details: "채굴속도를 올리려면 광고를 시청해주세요. 짧은 광고 한번에 채굴속도가 2배씩 올라갑니다. 10번의 광고시청으로 24시간 동안 채굴파워x10배 상승 효과를 누르세요."
+        },
+        { 
+          title: "럭키 이벤트", 
+          desc: "사토시 캐릭터 포획 시 랜덤 보너스 포인트 지급",
+          details: "홈화면을 보고 있으면 럭키사토시가 나타납니다. 어서 잡으세요.~\n\n포인트와 쿠폰을 줍니다."
+        }
       ],
       exchangeTitle: "1,000 Points 이상 모았다면?",
       exchangeDesc: "모인 포인트는 즉시 사토시밈 토큰으로 교환하여 출금이 가능합니다!",
-      btnEco: "토큰 생태계 확인하기"
+      btnEco: "토큰 생태계 확인하기",
+      btnDetails: "상세보기"
     },
     guide: {
       title: "시작하기는 놀랍도록 쉽습니다",
@@ -107,7 +135,10 @@ const translations = {
       socialProof: "<b>106,364</b> miners already joined",
       miningSpeed: "Mining Rate",
       myBalance: "My Balance",
-      appStoreWait: "Coming soon on App Store & Google Play"
+      appStoreWait: "Coming soon on App Store & Google Play",
+      inviteCode: "Referral Code:",
+      copy: "Copy",
+      copied: "Copied!"
     },
     partners: {
       title: "Our Ecosystem",
@@ -135,16 +166,41 @@ const translations = {
       title: "Earn Points in Various Ways",
       desc: "Beyond simple mining, earn more points through games and events.",
       methods: [
-        { title: "Basic Mining", desc: "Continuous automatic Points mining based on your mining power and boost." },
-        { title: "Invite Friends", desc: "Get 5,000 Points instantly when someone registers you as a referrer." },
-        { title: "Timing Game", desc: "Earn 1 to 1,000 Points depending on your accuracy." },
-        { title: "100% Win Coupon", desc: "No blanks! Get 1 to 1,000 Points randomly based on the result." },
-        { title: "Watch Ads", desc: "Watch a short video to earn extra reward points." },
-        { title: "Lucky Event", desc: "Catch the Satoshi character to receive random bonus points." }
+        { 
+          title: "Basic Mining", 
+          desc: "Continuous automatic Points mining based on your mining power and boost.",
+          details: "Improve your mining speed through mining power and watching ads. Mine Points 24/7 without stopping. Activate up to 10x acceleration to collect the maximum amount of points."
+        },
+        { 
+          title: "Invite Friends", 
+          desc: "Get 5,000 Points instantly when someone registers you as a referrer.",
+          details: "Invite friends to mine together with our 3-tier referral system. Bring your friends' friends to mine together, and everyone's mining power will increase together.\n\nThe larger the community grows, the greater our value becomes."
+        },
+        { 
+          title: "Timing Game", 
+          desc: "Earn 1 to 1,000 Points depending on your accuracy.",
+          details: "Focus~! Focus! Stop at the exact right time.\n\n1000P in one shot! The jackpot is waiting for you."
+        },
+        { 
+          title: "100% Win Coupon", 
+          desc: "No blanks! Get 1 to 1,000 Points randomly based on the result.",
+          details: "Go to the coupon menu to find 1~1000P 100% winning coupons. Play games and visit partner channels to earn coupons.\n\nScratch the coupon to earn points.\n\nMake a donation~ Coupons accumulate based on your Satoshi donation amount."
+        },
+        { 
+          title: "Watch Ads", 
+          desc: "Watch a short video to earn extra reward points.",
+          details: "Watch ads to increase your mining speed. One short ad doubles your mining speed. Watch 10 ads to enjoy a 10x mining power boost for 24 hours."
+        },
+        { 
+          title: "Lucky Event", 
+          desc: "Catch the Satoshi character to receive random bonus points.",
+          details: "Keep an eye on the home screen and Lucky Satoshi will appear. Catch it quickly!\n\nIt gives you points and coupons."
+        }
       ],
       exchangeTitle: "Collected over 1,000 Points?",
       exchangeDesc: "Your points can be immediately exchanged for Satoshi Meme Tokens and withdrawn!",
-      btnEco: "Check Token Ecosystem"
+      btnEco: "Check Token Ecosystem",
+      btnDetails: "Details"
     },
     guide: {
       title: "Getting Started is Incredibly Easy",
@@ -177,14 +233,159 @@ const translations = {
       contact: "Contact Us",
       rights: "All rights reserved."
     }
+  },
+  vi: {
+    nav: {
+      concept: "Khái niệm",
+      features: "Tính năng",
+      howToEarn: "Cách kiếm điểm",
+      guide: "Hướng dẫn"
+    },
+    hero: {
+      badge: "Micro Bitcoin X Satoshi Meme",
+      headlinePrefix: "Khai thác Satoshi!",
+      description: "Không cần thiết bị phức tạp hay chuyên môn. Khai thác dễ dàng bằng điện thoại thông minh trong cuộc sống hàng ngày và nhận meme SATOSHI đầu tiên của bạn.",
+      btnStart: "Bắt đầu ngay",
+      btnDetails: "Tìm hiểu thêm",
+      socialProof: "Đã có <b>106,364</b> thợ mỏ tham gia",
+      miningSpeed: "Tốc độ khai thác",
+      myBalance: "Số dư của tôi",
+      appStoreWait: "Sắp ra mắt trên App Store & Google Play",
+      inviteCode: "Mã giới thiệu:",
+      copy: "Sao chép",
+      copied: "Đã sao chép!"
+    },
+    partners: {
+      title: "Hệ sinh thái của chúng tôi",
+      miners: "100K+ Thợ mỏ"
+    },
+    concept: {
+      titleLine1: "Tiếp nối triết lý của Bitcoin",
+      titleLine2: "theo cách thú vị nhất",
+      desc: "Tầm nhìn phi tập trung của Micro Bitcoin (MBC) kết hợp với 'meme SATOSHI', biểu tượng của văn hóa internet. Chúng tôi đã biến việc khai thác tiền điện tử, vốn chỉ dành cho một số ít người, thành một trò chơi thú vị cho tất cả mọi người.",
+      list1: "Niềm vui thuần túy của sự tham gia và phần thưởng, không vì mục đích đầu cơ",
+      list2: "Sức mạnh lan truyền bùng nổ của cộng đồng Meme",
+      list3: "Hệ thống phần thưởng minh bạch liên kết với giá trị thực"
+    },
+    features: {
+      title: "Thay đổi mô hình khai thác",
+      desc: "Quên đi các thiết lập phức tạp, GPU đắt tiền và hóa đơn tiền điện cao. Tất cả những gì bạn cần là điện thoại thông minh.",
+      f1Title: "Khai thác di động dễ dàng",
+      f1Desc: "Mở ứng dụng và chạm một lần! Satoshi được khai thác tự động trong nền, giảm thiểu tiêu thụ pin.",
+      f2Title: "Nội dung đa dạng để thưởng thức",
+      f2Desc: "Từ video ngắn đến trò chơi mini, chúng tôi bao gồm nhiều nội dung khác nhau có thể thay đổi khái niệm khai thác. Cùng với cộng đồng, chúng ta có thể đạt được điều đó.",
+      f3Title: "Cộng đồng Fandom mạnh mẽ",
+      f3Desc: "Khai thác một mình rất nhàm chán. Mời bạn bè để tăng sức mạnh khai thác của bạn và ghi tên vào Đại sảnh Danh vọng."
+    },
+    earn: {
+      title: "Kiếm điểm bằng nhiều cách",
+      desc: "Vượt ra ngoài việc khai thác đơn giản, kiếm thêm điểm thông qua các trò chơi và sự kiện.",
+      methods: [
+        { 
+          title: "Khai thác cơ bản", 
+          desc: "Tự động khai thác Điểm liên tục dựa trên sức mạnh và tốc độ khai thác của bạn.",
+          details: "Cải thiện tốc độ khai thác của bạn thông qua sức mạnh khai thác và xem quảng cáo. Khai thác Điểm 24/7 không ngừng nghỉ. Kích hoạt tăng tốc lên đến 10 lần để thu thập lượng điểm tối đa."
+        },
+        { 
+          title: "Mời bạn bè", 
+          desc: "Nhận ngay 5.000 Điểm khi ai đó đăng ký bạn làm người giới thiệu.",
+          details: "Mời bạn bè cùng khai thác với hệ thống giới thiệu 3 cấp của chúng tôi. Mang bạn của bạn bè đến cùng khai thác, và sức mạnh khai thác của mọi người sẽ cùng tăng lên.\n\nCộng đồng càng phát triển, giá trị của chúng ta càng lớn."
+        },
+        { 
+          title: "Trò chơi canh thời gian", 
+          desc: "Kiếm từ 1 đến 1.000 Điểm tùy thuộc vào độ chính xác của bạn.",
+          details: "Tập trung~! Tập trung! Dừng lại đúng lúc.\n\n1000P trong một lần! Giải độc đắc đang chờ bạn."
+        },
+        { 
+          title: "100% Trúng thưởng", 
+          desc: "Không có vé trượt! Nhận ngẫu nhiên từ 1 đến 1.000 Điểm dựa trên kết quả.",
+          details: "Vào menu phiếu giảm giá để tìm phiếu trúng thưởng 100% từ 1~1000P. Chơi trò chơi và truy cập các kênh đối tác để kiếm phiếu giảm giá.\n\nCào phiếu để kiếm điểm.\n\nQuyên góp~ Phiếu giảm giá tích lũy dựa trên số tiền quyên góp Satoshi của bạn."
+        },
+        { 
+          title: "Xem quảng cáo", 
+          desc: "Xem một video ngắn để kiếm thêm điểm thưởng.",
+          details: "Xem quảng cáo để tăng tốc độ khai thác của bạn. Một quảng cáo ngắn nhân đôi tốc độ khai thác. Xem 10 quảng cáo để tận hưởng sức mạnh khai thác gấp 10 lần trong 24 giờ."
+        },
+        { 
+          title: "Sự kiện may mắn", 
+          desc: "Bắt nhân vật Satoshi để nhận điểm thưởng ngẫu nhiên.",
+          details: "Hãy để mắt đến màn hình chính và Lucky Satoshi sẽ xuất hiện. Bắt nó nhanh lên!\n\nNó mang lại cho bạn điểm và phiếu giảm giá."
+        }
+      ],
+      exchangeTitle: "Đã thu thập hơn 1.000 Điểm?",
+      exchangeDesc: "Điểm của bạn có thể được đổi ngay lập tức thành Token Satoshi Meme và rút tiền!",
+      btnEco: "Kiểm tra hệ sinh thái Token",
+      btnDetails: "Chi tiết"
+    },
+    guide: {
+      title: "Bắt đầu cực kỳ dễ dàng",
+      desc: "Chỉ với 3 bước và bạn đã sẵn sàng trở thành Thợ mỏ Satoshi. Bắt đầu ngay bây giờ và đừng bỏ lỡ phần thưởng cho người tham gia sớm.",
+      steps: [
+        { title: "Tải ứng dụng & Đăng ký", desc: "Bắt đầu ngay qua WebApp hoặc tải ứng dụng từ Google Play/App Store (sắp ra mắt) và đăng ký dễ dàng bằng email trong 10 giây." },
+        { title: "Bắt đầu khai thác 1 chạm", desc: "Chạm vào nhân vật Satoshi nằm ở giữa màn hình chính để bắt đầu khai thác ngay lập tức." },
+        { title: "Nhận phần thưởng & Tăng tốc", desc: "Nhập phiếu giảm giá hoặc điểm danh hàng ngày để nhận Tăng tốc và thu thập thêm điểm." }
+      ]
+    },
+    philosophy: {
+      title: "Triết lý & Lời hứa của chúng tôi",
+      p1: "Ứng dụng này chứa một lượng quảng cáo đáng kể. Chúng tôi cung cấp token meme SATOSHI như một phần thưởng cho người dùng xem quảng cáo.",
+      p2: "Người điều hành ứng dụng này là những người tham gia cộng đồng thuần túy, không phải Quỹ Satoshi. Chúng tôi là những cá nhân không thể kiểm soát cung và cầu của token SATOSHIMEME.",
+      p3: "Ứng dụng này được vận hành dựa trên sự đóng góp token từ những người tham gia và doanh thu quảng cáo.",
+      p4: "Một phần doanh thu quảng cáo sẽ được sử dụng để <strong class='text-orange-400'>mua lại token SATOSHIMEME</strong>, điều này sẽ mang lại sức mạnh to lớn cho toàn bộ mạng lưới. Quá trình và phương thức mua lại sẽ được xác định thông qua các cuộc trò chuyện và thảo luận giữa những người tham gia.",
+      p5: "Sử dụng doanh thu hoạt động được tạo ra bởi sự tham gia của mọi người để tăng giá trị của token là triết lý cốt lõi của ứng dụng này. Chúng tôi mong muốn tất cả chúng ta cùng tham gia."
+    },
+    community: {
+      title: "Tham gia cộng đồng",
+      desc: "Giao tiếp với các thợ mỏ khác và nhận tin tức mới nhất trên nhiều kênh khác nhau!"
+    },
+    footer: {
+      desc: "Ứng dụng khai thác di động sáng tạo và thú vị nhất với hệ sinh thái Micro Bitcoin. Hòa mình vào thế giới của Satoshi Memes ngay bây giờ.",
+      disclaimer: "Nó được điều hành bởi những người tham gia cộng đồng thuần túy, những người không có liên kết với các tổ chức điều hành Microbitcoin.org và satoshimemes.com.",
+      ecoTitle: "Hệ sinh thái",
+      legalTitle: "Pháp lý & Hỗ trợ",
+      terms: "Điều khoản dịch vụ",
+      privacy: "Chính sách bảo mật",
+      contact: "Liên hệ chúng tôi",
+      rights: "Đã đăng ký Bản quyền."
+    }
   }
 };
 
 export default function App() {
+  // 브라우저 언어 감지하여 초기 언어 설정
+  const getInitialLang = () => {
+    const browserLang = navigator.language.toLowerCase();
+    if (browserLang.startsWith('ko')) return 'ko';
+    if (browserLang.startsWith('vi')) return 'vi';
+    return 'en'; // 기본값은 영어
+  };
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [lang, setLang] = useState('ko'); // 기본 언어: 한국어
+  const [lang, setLang] = useState(getInitialLang()); // 브라우저 언어로 초기화
   const [modalInfo, setModalInfo] = useState<{ title: string; message: string; isOpen: boolean } | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
+  
+  const [isKakaoNoticeOpen, setIsKakaoNoticeOpen] = useState(false);
+  
+  // 현재 접속한 URL에서 레퍼럴 ID(ref)를 전역으로 저장
+  const [refId, setRefId] = useState<string | null>(null);
+
+  const handleCopyRef = () => {
+    if (refId) {
+      navigator.clipboard.writeText(refId);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    }
+  };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const existingRef = urlParams.get('ref');
+    if (existingRef) {
+      setRefId(existingRef);
+    }
+  }, []);
 
   const t = translations[lang];
 
@@ -196,26 +397,30 @@ export default function App() {
     setModalInfo(null);
   };
 
-  // 언어 토글 함수
+  // 언어 토글 함수 (ko -> en -> vi -> ko)
   const toggleLanguage = () => {
-    setLang(prev => prev === 'ko' ? 'en' : 'ko');
+    setLang(prev => {
+      if (prev === 'ko') return 'en';
+      if (prev === 'en') return 'vi';
+      return 'ko';
+    });
   };
 
-  // 카카오톡 인앱 브라우저 감지 및 외부 브라우저 열기 유도
+  // 현재 언어 표시 텍스트
+  const getLangDisplay = () => {
+    if (lang === 'ko') return 'KR';
+    if (lang === 'en') return 'EN';
+    return 'VN';
+  };
+
+  // 카카오톡 인앱 브라우저 감지 (안드로이드/아이폰 분기 처리) - 애드센스 승인을 위해 자동 리다이렉트 제거
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     const isKakaotalk = userAgent.indexOf('kakaotalk') !== -1;
 
     if (isKakaotalk) {
-      const targetUrl = location.href; 
-      
-      if (userAgent.indexOf('android') !== -1) {
-        location.href = `intent://${targetUrl.replace(/https?:\/\//i, '')}#Intent;scheme=https;package=com.android.chrome;end`;
-      } 
-      else if (userAgent.indexOf('iphone') !== -1 || userAgent.indexOf('ipad') !== -1) {
-        location.href = `kakaoweb://closeBrowser`; 
-        alert('원활한 이용을 위해 우측 하단(또는 상단)의 [다른 브라우저로 열기]를 선택해 주세요.');
-      }
+      // 자동 리다이렉트 대신 사용자에게 알림 팝업만 표시
+      setIsKakaoNoticeOpen(true);
     }
   }, []);
 
@@ -233,18 +438,51 @@ export default function App() {
     }
   }, []);
 
-  // 웹앱 팝업으로 열기 함수
+  // 1. 웹앱 팝업으로 열기로 레퍼럴 전달
   const openWebAppPopup = () => {
     const width = 400; 
     const height = 800; 
     const left = (window.innerWidth / 2) - (width / 2);
     const top = (window.innerHeight / 2) - (height / 2);
     
-    window.open(
-      "https://app.miningsatoshi.com",
-      "MiningSatoshiApp",
-      `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes,status=no,location=no,toolbar=no,menubar=no`
-    );
+    // 웹앱 URL 구성 (ref 값이 있으면 파라미터로 추가)
+    const targetUrl = refId 
+      ? `https://app.miningsatoshi.com?ref=${refId}` 
+      : "https://app.miningsatoshi.com";
+
+    // 인앱 브라우저 (특히 아이폰 카카오톡 등)에서 window.open이 막히는 것을 방지
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isMobile = /iphone|ipad|ipod|android/i.test(userAgent);
+    const isKakao = userAgent.includes('kakaotalk');
+    
+    if (isMobile && isKakao) {
+      window.location.href = targetUrl;
+    } else {
+      window.open(
+        targetUrl,
+        "MiningSatoshiApp",
+        `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes,status=no,location=no,toolbar=no,menubar=no`
+      );
+    }
+  };
+
+  // 2. 구글 플레이 스토어로 레퍼럴 전달
+  const handleGooglePlayClick = () => {
+    const playStoreBase = "https://play.google.com/store/apps/details?id=com.scp.msatoshi";
+    const playStoreUrl = refId 
+      ? `${playStoreBase}&referrer=${refId}` 
+      : playStoreBase;
+    
+    window.open(playStoreUrl, '_blank');
+  };
+
+  // 3. 애플 앱스토어로 레퍼럴 전달
+  const handleAppStoreClick = () => {
+    if (refId) {
+      alert(`앱스토어 이동 (준비중)\n전달할 레퍼럴: ${refId}\n\n실제 연결 시 URL 예시: https://apps.apple.com/app/id12345?ct=${refId}`);
+    } else {
+      alert(`앱스토어 이동 (준비중)`);
+    }
   };
 
   // 스크롤 감지
@@ -258,6 +496,29 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0c] text-white font-sans selection:bg-orange-500 selection:text-white">
+      {/* 카카오톡 인앱 브라우저 안내 팝업 */}
+      {isKakaoNoticeOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="glass-panel max-w-sm w-full p-6 text-center border-orange-500/50 shadow-2xl animate-in fade-in zoom-in duration-300">
+            <div className="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Globe className="text-orange-500" size={32} />
+            </div>
+            <h3 className="text-xl font-bold mb-2">더 나은 환경에서 이용하세요</h3>
+            <p className="text-gray-300 text-sm mb-6 leading-relaxed">
+              카카오톡 인앱 브라우저에서는 일부 기능이 제한될 수 있습니다.<br/>
+              <b>우측 상단(⋮)</b> 또는 <b>하단</b>의 메뉴에서 <br/>
+              <span className="text-orange-400 font-bold">"다른 브라우저로 열기"</span>를 선택해 주세요.
+            </p>
+            <button 
+              onClick={() => setIsKakaoNoticeOpen(false)}
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg active:scale-95"
+            >
+              확인했습니다
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* 커스텀 CSS */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes float {
@@ -319,10 +580,10 @@ export default function App() {
             </nav>
             <button 
               onClick={toggleLanguage} 
-              className="flex items-center gap-1 text-sm font-semibold text-gray-400 hover:text-white transition-colors glass-panel px-3 py-1.5 rounded-full"
+              className="flex items-center gap-1 text-sm font-semibold text-gray-400 hover:text-white transition-colors glass-panel px-3 py-1.5 rounded-full w-16 justify-center"
             >
               <Globe size={16} />
-              {lang === 'ko' ? 'EN' : 'KR'}
+              {getLangDisplay()}
             </button>
           </div>
 
@@ -330,10 +591,10 @@ export default function App() {
           <div className="md:hidden flex items-center gap-4">
              <button 
               onClick={toggleLanguage} 
-              className="flex items-center gap-1 text-sm font-semibold text-gray-400 hover:text-white transition-colors"
+              className="flex items-center gap-1 text-sm font-semibold text-gray-400 hover:text-white transition-colors w-12 justify-center"
             >
               <Globe size={18} />
-              {lang === 'ko' ? 'EN' : 'KR'}
+              {getLangDisplay()}
             </button>
             <button className="text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -378,14 +639,32 @@ export default function App() {
                     {t.hero.btnStart} <ChevronRight size={20} />
                   </button>
                   <div className="flex gap-2 w-full sm:w-auto">
-                    <button disabled className="flex-1 sm:flex-none glass-panel text-gray-500 px-6 py-4 rounded-full font-bold text-sm flex items-center justify-center gap-2 cursor-not-allowed opacity-50">
+                    <button onClick={handleGooglePlayClick} className="flex-1 sm:flex-none glass-panel text-gray-400 hover:text-white hover:bg-gray-800 px-6 py-4 rounded-full font-bold text-sm flex items-center justify-center gap-2 transition-colors">
                       <Smartphone size={18} /> Google Play
                     </button>
-                    <button disabled className="flex-1 sm:flex-none glass-panel text-gray-500 px-6 py-4 rounded-full font-bold text-sm flex items-center justify-center gap-2 cursor-not-allowed opacity-50">
+                    <button onClick={handleAppStoreClick} className="flex-1 sm:flex-none glass-panel text-gray-400 hover:text-white hover:bg-gray-800 px-6 py-4 rounded-full font-bold text-sm flex items-center justify-center gap-2 transition-colors">
                       <Apple size={18} /> App Store
                     </button>
                   </div>
                 </div>
+
+                {/* 추천인 코드 클립보드 복사 UI */}
+                {refId && (
+                  <div className="mt-6 inline-flex relative items-center gap-3 glass-panel px-5 py-3 rounded-2xl border-orange-500/30">
+                    <div className="flex flex-col text-left">
+                      <span className="text-xs text-gray-400">{t.hero.inviteCode}</span>
+                      <span className="text-lg font-bold text-orange-400 font-mono tracking-wider">{refId}</span>
+                    </div>
+                    <button
+                      onClick={handleCopyRef}
+                      className="ml-2 bg-white/10 hover:bg-white/20 p-2 rounded-xl transition-colors flex items-center justify-center text-gray-300 hover:text-white"
+                      title={t.hero.copy}
+                    >
+                      {isCopied ? <Check size={20} className="text-green-400" /> : <Copy size={20} />}
+                    </button>
+                    {isCopied && <span className="absolute -top-8 right-2 text-xs text-green-400 font-bold animate-bounce bg-green-900/80 px-3 py-1 rounded-full whitespace-nowrap shadow-lg">{t.hero.copied}</span>}
+                  </div>
+                )}
                 
                 {/* 간이 소셜 프루프 */}
                 <div className="mt-10 flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-400">
@@ -564,7 +843,7 @@ export default function App() {
         {/* 중간 광고 영역 */}
         <AdSense 
           client="ca-pub-6917612099433744" 
-          slot="YOUR_MIDDLE_AD_SLOT_ID" 
+          slot="9198168516" 
         />
 
         {/* 포인트 획득 방법 */}
@@ -579,14 +858,22 @@ export default function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {t.earn.methods.map((method, index) => (
-                <div key={index} className="glass-panel p-6 rounded-2xl flex flex-col items-start hover:border-orange-500/50 transition-colors">
-                  <div className="bg-gray-800 p-3 rounded-xl mb-4">
-                    {index === 0 && <Zap className="text-orange-500" size={24} />}
-                    {index === 1 && <Users2 className="text-orange-500" size={24} />}
-                    {index === 2 && <Target className="text-orange-500" size={24} />}
-                    {index === 3 && <Ticket className="text-orange-500" size={24} />}
-                    {index === 4 && <Video className="text-orange-500" size={24} />}
-                    {index === 5 && <Gift className="text-orange-500" size={24} />}
+                <div key={index} className="glass-panel p-6 rounded-2xl flex flex-col items-start hover:border-orange-500/50 transition-colors relative group">
+                  <div className="w-full flex justify-between items-start mb-4">
+                    <div className="bg-gray-800 p-3 rounded-xl">
+                      {index === 0 && <Zap className="text-orange-500" size={24} />}
+                      {index === 1 && <Users2 className="text-orange-500" size={24} />}
+                      {index === 2 && <Target className="text-orange-500" size={24} />}
+                      {index === 3 && <Ticket className="text-orange-500" size={24} />}
+                      {index === 4 && <Video className="text-orange-500" size={24} />}
+                      {index === 5 && <Gift className="text-orange-500" size={24} />}
+                    </div>
+                    <button 
+                      onClick={() => openModal(method.title, method.details)}
+                      className="text-xs font-semibold text-gray-400 hover:text-orange-500 transition-colors bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-full border border-white/10"
+                    >
+                      {t.earn.btnDetails}
+                    </button>
                   </div>
                   <h4 className="text-xl font-bold mb-2 text-white">{method.title}</h4>
                   <p className="text-gray-400 text-sm leading-relaxed">{method.desc}</p>
@@ -772,7 +1059,7 @@ export default function App() {
         {/* 하단 광고 영역 */}
         <AdSense 
           client="ca-pub-6917612099433744" 
-          slot="YOUR_FOOTER_AD_SLOT_ID" 
+          slot="9198168516" 
         />
 
       </main>
